@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 19, 2012 5:21:04 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.StudentInfo" table="STUDENTINFO">
+        <id name="stdId" type="long">
+            <column name="STDID" />
+            <generator class="increment" />
+        </id>
+        <property name="firstName" type="java.lang.String">
+            <column name="FIRSTNAME" />
+        </property>
+        <property name="lastName" type="java.lang.String">
+            <column name="LASTNAME" />
+        </property>
+        <property name="initials" type="java.lang.String">
+            <column name="INITIALS" />
+        </property>
+        <property name="aboutMe" type="java.lang.String">
+            <column name="ABOUTME" />
+        </property>
+        <property name="dob" type="java.util.Date">
+            <column name="dob" />
+        </property>
+        <property name="fathersName" type="java.lang.String">
+            <column name="FATHERSNAME" />
+        </property>
+        <property name="mothersName" type="java.lang.String">
+            <column name="MOTHERSNAME" />
+        </property>
+        <property name="sex" type="java.lang.String">
+            <column name="SEX" />
+        </property>
+        <property name="fathersProfess" type="java.lang.String">
+            <column name="FATHERSPROFESS" />
+        </property>
+        <property name="mothersProfess" type="java.lang.String">
+            <column name="MOTHERSPROFESS" />
+        </property>
+        <property name="monthlyIncome" type="java.lang.Double">
+            <column name="MONTHLYINCOME" />
+        </property>
+        <property name="addLine1" type="java.lang.String">
+            <column name="ADDLINE1" />
+        </property>
+        <property name="addLine2" type="java.lang.String">
+            <column name="ADDLINE2" />
+        </property>
+        <property name="city" type="java.lang.String">
+            <column name="CITY" />
+        </property>
+        <property name="state" type="java.lang.String">
+            <column name="STATE" />
+        </property>
+        <property name="country" type="java.lang.String">
+            <column name="COUNTRY" />
+        </property>
+        <property name="stdPhoneNo" type="java.lang.String">
+            <column name="STDPHONENO" />
+        </property>
+        <property name="stdMobileNo" type="java.lang.String">
+            <column name="STDMOBILENO" />
+        </property>
+        <property name="stdEmail" type="java.lang.String">
+            <column name="STDEMAIL" />
+        </property>
+        <property name="parentPhoneNo" type="java.lang.String">
+            <column name="PARENTPHONENO" />
+        </property>
+        <property name="parentMobileNo" type="java.lang.String">
+            <column name="PARENTMOBILENO" />
+        </property>
+        <property name="parentEmail" type="java.lang.String">
+            <column name="PARENTEMAIL" />
+        </property>
+        <property name="fax" type="java.lang.String">
+            <column name="FAX" />
+        </property>
+        <bag name="instAdminList" inverse="true" table="INSTADMIN_STDINFO" lazy="true">
+            <key>
+                <column name="STDID" />
+            </key>
+            <one-to-many class="com.technobright.entities.InstAdmin_StdInfo"/>
+        </bag>
+        <bag name="course_StdInfoList" inverse="true" table="COURSE_STDINFO" lazy="true" >
+            <key>
+                <column name="STDID" />
+            </key>
+            <one-to-many class="com.technobright.entities.Course_StdInfo"/>
+        </bag>
+        <bag name="marksInfoList" inverse="true" table="MARKSINFO" lazy="true">
+            <key>
+                <column name="STDID" />
+            </key>
+            <one-to-many class="com.technobright.entities.MarksInfo"/>
+        </bag>
+		<bag name="batch_StdInfoList" inverse="true" table="BATCH_STDINFO" lazy="true" fetch="join">
+            <key>
+                <column name="STDID" />
+            </key>
+            <one-to-many class="com.technobright.entities.Batch_StdInfo"/>
+        </bag>
+          <many-to-one name="userInfo" class="com.technobright.entities.UserInfo" insert="true" update="true" lazy="false">
+         	<column name="USERINFOID"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

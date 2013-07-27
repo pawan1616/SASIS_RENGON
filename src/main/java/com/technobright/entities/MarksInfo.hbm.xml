@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 13, 2012 4:50:02 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.MarksInfo" table="MARKSINFO">
+        <id name="markId" type="long">
+            <column name="MARKID" />
+            <generator class="increment" />
+        </id>
+        <property name="marksObtained" type="float">
+            <column name="MARKSOBTAINED" />
+        </property>
+        <property name="result" type="boolean">
+            <column name="RESULT" />
+        </property>
+        <property name="combineResult" type="boolean">
+            <column name="COMBINERESULT" />
+        </property>
+        <property name="remarks" type="java.lang.String">
+            <column name="REMARKS" />
+        </property>
+        <many-to-one name="stdInfo" class="com.technobright.entities.StudentInfo" fetch="join">
+            <column name="STDID" />
+        </many-to-one>
+        <many-to-one name="examInfo" class="com.technobright.entities.ExamInfo" fetch="join">
+            <column name="EXAMINFOID" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

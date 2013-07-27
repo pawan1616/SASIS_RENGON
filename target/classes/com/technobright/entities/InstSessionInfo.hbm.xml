@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 26, 2013 11:46:38 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.InstSessionInfo" table="INSTSESSIONINFO">
+        <id name="instSessInfoId" type="long">
+            <column name="INSTSESSINFOID" />
+            <generator class="increment" />
+        </id>
+        <property name="name" type="java.lang.String" unique="true">
+            <column name="NAME" />
+        </property>
+        <property name="isHistory" type="boolean" access="field">
+            <column name="ISHISTORY" />
+        </property>
+         <property name="isAllSessionHistory" type="boolean" access="field">
+            <column name="ISALLSESSIONHISTORY" />
+        </property>
+        <many-to-one name="courseInfo" class="com.technobright.entities.CourseInfo" fetch="join">
+            <column name="COURSEINFO" />
+        </many-to-one>
+        <many-to-one name="instAdmin" class="com.technobright.entities.InstAdmin" fetch="join">
+            <column name="INSTADMIN" />
+        </many-to-one>
+        <bag name="examInfoList" inverse="false" table="EXAMINFO" lazy="true">
+            <key>
+                <column name="INSTSESSINFOID" />
+            </key>
+            <one-to-many class="com.technobright.entities.ExamInfo" />
+        </bag>
+    </class>
+</hibernate-mapping>

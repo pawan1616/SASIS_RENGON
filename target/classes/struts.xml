@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="false" />
+	
+	<package name="default1" extends="json-default" namespace="/">
+	<!-- Interceptor Settings -->
+		<interceptors>
+	        <interceptor name="logintest" class="com.technobright.interceptors.AuthenticaitonInterceptor"/>
+	        <interceptor name="actFilter" class="com.technobright.interceptors.ActionFilterInterceptor"/>
+	        <interceptor name="basicValidateInterceptor" class="com.technobright.interceptors.BasicModValidationInterceptor"/>
+	        <interceptor-stack name="newStack2">
+	            <interceptor-ref name="logintest"/>
+	            <interceptor-ref name="actFilter"/>
+	            
+	            <interceptor-ref name="defaultStack" />
+	        </interceptor-stack>
+    	</interceptors>
+    	<default-interceptor-ref name="newStack2" /> 
+		<!-- xxx Interceptor Settings xxx -->
+		
+		<!-- Global results -->
+		<global-results>
+			<result name="loginRedirect" type="redirect">nav2Login</result>
+			<result name="invalidAccess" type="redirect">msgSender</result>
+		</global-results>
+		<!-- xxx Global results xxx -->
+		
+		
+		
+		<!-- Form submission links -->
+		<action name="loginAction" class="loginAction">
+			<result name="STDTEMPLATE" type="redirect">nav2stdtemplate</result>
+			<result name="success" type="redirect">nav2template</result>
+			<result name="error" type="json">
+					<param name="excludeProperties">actionErrors,actionMessages,errors,fieldErrors,locale,errorMessages,request,usrName,password,dao</param>
+					<param name="ignoreHierarchy">true</param>
+					 <param name="excludeNullProperties">true</param>
+			</result>
+			<result name="input">/index.jsp</result>
+		</action>
+		<action name="createAcc" class="createAccAction">
+			<result name="success">CreateAccPage.jsp</result>
+			<result name="input">/CreateAccPage.jsp</result>
+		</action>
+		<action name="instCreation" class="instCreate">
+			<interceptor-ref name="defaultStack"/>
+			<interceptor-ref name="basicValidateInterceptor"/>
+			<result name="success" type="redirect">nav2template</result>
+			<result name="input" type="json">
+				<param name="excludeProperties">actionErrors,actionMessages,errors,fieldErrors,locale,errorMessages,dao,instAdmin,instTypeList,confirmPassword</param>
+				<param name="ignoreHierarchy">true</param>
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+		<action name="courseCreateAction" class="courseCreateAction">
+			<result name="success">pages/CourseInfoPage.jsp</result>
+			<result name="input">pages/CourseInfoPage.jsp</result>
+			<result name="error">pages/CourseInfoPage.jsp</result>
+		</action>
+		<action name="instSessInfoCreate" class="instSessInfoAction">
+			<result name="success" >pages/InstSessInfoPage.jsp</result>
+		</action>
+		<action name="examCreateAction" class="examInfoAction">
+			<result name="success">pages/ExamInfoPage.jsp</result>
+			<result name="input">pages/ExamInfoPage.jsp</result>
+			<result name="error">pages/ExamInfoPage.jsp</result>
+		</action>
+		<action name="examUpdateAction" class="examInfoAction" method="updateExamInfo">
+			<result name="success">pages/ExamInfoPage.jsp</result>
+			<result name="input">pages/ExamInfoPage.jsp</result>
+			<result name="error">pages/ExamInfoPage.jsp</result>
+		</action>
+		<action name="examTypeAction" class="examTypeAction">
+			<result name="success">pages/ExamTypePage.jsp</result>
+		</action>
+		<action name="examTypeUpdateAction" class="examTypeAction" method="updateExamtype">
+			<result name="success">pages/ExamTypePage.jsp</result>
+		</action>
+		<action name="subjectAction" class="subjectAction">
+			<interceptor-ref name="defaultStack"/>
+			<interceptor-ref name="basicValidateInterceptor"/>
+			<result name="success">pages/SubjectPage.jsp</result>
+			<result name="input" type="json">
+				<param name="excludeProperties">actionErrors,actionMessages,errors,fieldErrors,locale,errorMessages,dao,subjectInfo,request,allSubjects,examInfoList,subId</param>
+				<param name="ignoreHierarchy">true</param>
+				<param name="excludeNullProperties">true</param>
+			</result>
+			<result name="error">pages/SubjectPage.jsp</result>
+		</action>
+		<action name="gradCreate" class="gradInfoAction">
+			<result name="success" >pages/GradInfoPage.jsp</result>
+		</action>
+		<action name="stdCreationAction" class="stdCreationAction">
+			<result name="success">pages/StudentAdmission.jsp</result>
+		</action>
+		<action name="userRoleAction" class="userRoleAction">
+			<result name="success" >pages/UserRole.jsp</result>
+			<result name="input" >pages/UserRole.jsp</result>
+			<result name="error">pages/UserRole.jsp</result>
+		</action>
+		<action name="roleUpdateAction" class="userRoleAction" method="updateRole">
+			<result name="success">pages/UserRole.jsp</result>
+		</action>
+		<action name="usrInfoUpdateAction" class="createAccAction" method="updateUserInfo">
+			<result name="success">pages/CreateAccPage.jsp</result>
+		</action>
+		<action name="marksCreationAction" class="marksAction">
+			<result name="success">pages/MarksInfoPage.jsp</result>
+		</action>
+		<action name="batchCreateAction" class="batchInfoAction" method="createBatch">
+			<result name="success">pages/BatchInfoPage.jsp</result>		
+		</action>
+		<action name="batchUpdateAction" class="batchInfoAction" method="batchUpdate">
+			<result name="success">pages/BatchInfoPage.jsp</result>		
+		</action>
+		<action name="stdBasicInfoUpdateAction" class="stdCreationAction" method="updateStdRecord">
+			<result name="success" >pages/StdHome.jsp</result>
+		</action>
+		<action name="stdChangePassword" class="accountSettingAction" method="stdPasswordChange">
+			<result name="success">pages/StdAccountSetting.jsp</result>
+		</action>
+		<action name="addWorkExp" class="workExpAction" method="addWorkExp">
+			<result name="success">pages/WorkExp.jsp</result>
+		</action>
+		<action name="updateWorkExp" class="workExpAction" method="updateWorkExp">
+			<result name="success">pages/WorkExp.jsp</result>
+		</action>
+		<action name="achieveCreation" class="achieveAction" method="achieveSubmission">
+			<result name="success">pages/WorkExp.jsp</result>
+		</action>
+		<action name="uploadProfilepic" class="usrProfileAction" method="uploadProfilePic">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">2097152</param>
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/pjpeg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		
+			<result name="success" type='redirect'>nav2template</result>
+		</action>
+		<action name="achieveUpdate" class="achieveAction" method="achieveUpdate">
+			<result name="success">pages/Achievement.jsp</result>
+		</action>
+		
+			<!-- fee -->
+			
+			<!-- xxx fee xxx -->
+		
+		
+		<!-- xxx Form submission links xxx-->
+		
+		<!-- Obj Delete links -->
+		<action name="nav2SubjectDelete" class="subjectAction" method="subDelete">
+			<result name="success">pages/SubjectPage.jsp</result>
+		</action>
+		<action name="deleteBatch" class="batchInfoAction" method="deleteBatch">
+			<result name="success" type="redirect">nav2BatchSummary</result>
+		</action>
+		<!-- xxx Obj Delete links xxx -->
+		
+		<!-- Navigation links -->
+		<action name="nav2Login" class="loginAction" method="loginPageNavigation">
+			<result name="success">/Login.jsp</result>
+		</action>
+		<action name="nav2Success" class="navigation">
+			<result name="success">/success.jsp</result>
+		</action>
+		<action name="nav2template" class="navigation" method="templateNavigation">
+			<result name="success">/pages/template.jsp</result>
+			<result name="STDTEMPLATE">/pages/templateStd.jsp</result>
+		</action>
+		<action name="nav2stdtemplate" class="navigation">
+			<result name="success">/pages/templateStd.jsp</result>
+		</action>
+		<action name="nav2Flyers" class="navigation">
+			<result name="success">Prototype-flyers/flyers.jsp</result>
+		</action>
+		<action name="nav2CreateAccPage" class="instCreate" method="instCreationNavigation">
+			<result name="success">/pages/InstCreation.jsp</result>
+			<result name="input">/pages/InstCreation.jsp</result>
+		</action>
+		<action name="nav2InstUserCreate" class="createAccAction" method="createAccNavigation">
+			<result name="success">/pages/CreateAccPage.jsp</result>
+			<result name="input">/pages/CreateAccPage.jsp</result>
+		</action>
+		<action name="nav2Course" class="courseCreateAction" method="courseNavigation">
+			<result name="success" >pages/CourseInfoPage.jsp</result>
+		</action>
+		<action name="nav2CourseSummary" class="courseCreateAction" method="courseSummaryNavigation">
+			<result name="success">pages/CourseSummary.jsp</result>
+		</action>
+		<action name="nav2BatchInfo" class="batchInfoAction" method="batchNavigation">
+			<result name="success">pages/BatchInfoPage.jsp</result>
+		</action>
+		<action name="nav2BatchInfoEdit" class="batchInfoAction" method="batchEditNavigation">
+			<result name="success">pages/BatchInfoPage.jsp</result>
+		</action>
+		<action name="nav2BatchSummary" class="batchInfoAction" method="batchSummmaryNavigation">
+			<result name="success">pages/BatchSummary.jsp</result>
+		</action>
+		<action name="nav2Exam" class="examInfoAction" method="examInfoNavigation">
+			<result name="success" >pages/ExamInfoPage.jsp</result>
+		</action>
+		<action name="nav2Grad" class="gradInfoAction" method="gradInfoNavigation">
+			<result name="success" >pages/GradInfoPage.jsp</result>
+		</action>
+		<action name="nav2GradSummary" class="gradInfoAction" method="gradInfoSummaryNavigation">
+			<result name="success" >pages/GradInfoSummary.jsp</result>
+		</action>
+		<action name="nav2GradEdit" class="gradInfoAction" method="gradInfoEditNavigation">
+			<result name="success" >pages/GradInfoPage.jsp</result>
+		</action>
+		<action name="nav2InstSess" class="instSessInfoAction" method="instSessionNavigation">
+			<result name="success" >pages/InstSessInfoPage.jsp</result>
+		</action>
+		<action name="nav2InstSessSummary" class="instSessInfoAction" method="instSessionSummaryNavigation">
+			<result name="success" >pages/InstSessSummary.jsp</result>
+		</action>
+		<action name="nav2InstSessEdit" class="instSessInfoAction" method="instSessionEditNavigation">
+			<result name="success" >pages/InstSessInfoPage.jsp</result>
+		</action>
+		<action name="nav2ExamSummary" class="examInfoAction" method="examInfoSummaryNavigation">
+			<result name="success" >pages/ExamInfoSummary.jsp</result>
+		</action>
+		<action name="nav2ExamUpdate" class="examInfoAction" method="examInfoUpdateNavigation">
+			<result name="success" >pages/ExamInfoPage.jsp</result>
+		</action>
+		<action name="nav2ExamType" class="examTypeAction" method="fetchSubjcts">
+			<result name="success">pages/ExamTypePage.jsp</result>
+		</action>
+		<action name="nav2ExamTypeSummary" class="examTypeAction" method="examTypeSummaryNavigation">
+			<result name="success">pages/ExamTypeSummary.jsp</result>
+		</action>
+		<action name="nav2ExamTypeUpdate" class="examTypeAction" method="updateExmTypeNavigation">
+			<result name="success">pages/ExamTypePage.jsp</result>
+		</action>
+		<action name="nav2Subjects" class="subjectAction" method="subNavigation">
+			<result name="success">pages/SubjectPage.jsp</result>
+		</action>
+		<action name="nav2StdCreation" class="navigation">
+			<result name="success" >pages/StudentCreationPage.jsp</result>
+		</action>
+		<action name="nav2StdRecords" class="navigation">
+			<result name="success">pages/StdRecordsSetting.jsp</result>
+		</action>
+		<action name="nav2InstStdViewSetting" class="navigation">
+			<result name="success">pages/InstStdViewSetting.jsp</result>
+		</action>
+		<action name="nav2CourseUpdate" class="courseCreateAction" method="showUpdateCourse">
+			<result name="success">pages/CourseInfoPage.jsp</result>
+		</action>
+		<action name="nav2UserRole" class="userRoleAction" method="userRoleNavigation">
+			<result name="success">pages/UserRole.jsp</result>
+		</action>
+		<action name="nav2UserSetting" class="navigation">
+			<result name="success">pages/UserSettingPage.jsp</result>
+		</action> 
+		<action name="nav2UserOptPage" class="navigation">
+			<result name="success">pages/UserOptPage.jsp</result>
+		</action> 
+		<action name="nav2UserProfile" class="usrProfileAction" method="userProfileNavigation">
+			<result name="success">pages/UserProfile.jsp</result>
+		</action>
+		<action name="nav2externalProfile" class="usrProfileAction" method="externalUserProfileNavigation">
+			<result name="success">pages/UserProfile.jsp</result>
+		</action>
+		<action name="nav2UsrRoleSummary" class="userRoleAction" method="usrRoleSumNavigation">
+			<result name="success">pages/UserRolesSummary.jsp</result>
+		</action>
+		<action name="nav2UsrRoleEdit" class="userRoleAction" method="editRoleNavigation">
+			<result name="success">pages/UserRole.jsp</result>
+		</action>
+		<action name="nav2UsrsSummary" class="createAccAction" method="userSummaryNavigation">
+			<result name="success">pages/UsersSummary.jsp</result>
+		</action>
+		<action name="nav2UsrInfoEdit" class="createAccAction" method="editUserNavigation">
+			<result name="success">pages/CreateAccPage.jsp</result>
+		</action>
+		<action name="nav2AdmissionSetting" class="navigation">
+			<result name="success">pages/AdmissionSettingPage.jsp</result>
+		</action>
+		<action name="nav2StdAdmission" class="stdCreationAction" method="basicInfoNavigation">
+			<result name="success">pages/StudentAdmission.jsp</result>
+		</action>
+		<action name="nav2InstStdView" class="stdCreationAction" method="instStdViewNavigation">
+			<result name="success">pages/InstStdView.jsp</result>
+		</action>
+		<action name="nav2SearchStdAdmission" class="stdCreationAction" method="searchStudent">
+			<result name="success">pages/StudentAdmission.jsp</result>
+		</action>
+		<action name="nav2InstSetting" class="navigation">
+			<result name="success">pages/InstSettings.jsp</result>
+		</action>
+		<action name="nav2ExmsTemplate" class="navigation">
+			<result name="success">pages/StdExmTemplate.jsp</result>
+		</action>
+		<action name="nav2MarksInfo" class="marksAction" method="marksCreationNavigation">
+			<result name="success">pages/MarksInfoPage.jsp</result>
+		</action>
+		<action name="nav2EditMarks" class="marksAction" method="editMarksNavigation">
+			<result name="success">pages/EditMarksPage.jsp</result>
+		</action>
+		<action name="nav2UpdateMarks" class="marksAction" method="updateMarksNavigation">
+			<result name="success">pages/MarksInfoPage.jsp</result>
+		</action>
+		<action name="nav2StdHome" class="usrProfileAction" method="stdHomeNavigation">
+			<result name="success">pages/StdHome.jsp</result>
+		</action>
+		<action name="nav2MarksPV" class="marksAction" method="stdMarksPVNavigation">
+			<result name="success">pages/StdMarksPV.jsp</result>
+		</action>
+		<action name="nav2ProfesQual" class="marksAction" method="stdProfessionalQualNavigation">
+			<result name="success">pages/StdMarksPV.jsp</result>
+		</action>
+		<action name="nav2StdProfileEdit" class="stdProfileEditAction">
+			<result name="success">pages/StdProfileEdit.jsp</result>
+		</action>
+		<action name="nav2StdBasiInfoEdit" class="stdCreationAction" method="updateStdRecordNavigation">
+			<result name="success">pages/StudentAdmission.jsp</result>
+		</action>
+		<action name="nav2AccountSetting" class="accountSettingAction" method="stdAccountSettingNavigation">
+			<result name="success">pages/StdAccountSetting.jsp</result>
+		</action>
+		<action name="nav2StdChangePassword" class="accountSettingAction" method="stdChangePasswordNavigation">
+			<result name="success">pages/StdChangePassword.jsp</result>
+		</action>
+		<action name="nav2StdWorkExp" class="workExpAction" method="workExperienceNavigation">
+			<result name="success">pages/WorkExp.jsp</result>
+		</action>
+		<action name="nav2StdWorkExpEdit" class="workExpAction" method="workExperienceEditNavigation">
+			<result name="success">pages/WorkExp.jsp</result>
+		</action>
+		<action name="nav2AchieveEdit" class="achieveAction" method="achieveEditNavigation">
+			<result name="success">pages/Achievement.jsp</result>
+		</action>
+		<action name="nav2ProfileAchievement" class="achieveAction" method="profileAchieveNavigation">
+			<result name="success">pages/Achievement.jsp</result>
+		</action>
+		<action name="nav2ProfilePicNavigation" class="usrProfileAction" method="profilePicEditNavigation">
+			<result name="success">pages/ProfilePics.jsp</result>
+		</action>
+		<action name="nav2ResultSetting" class="resultInfoAction" method="resultSettingNavigation">
+			<result name="success">pages/ResultsSetting.jsp</result>
+		</action>
+		<action name="nav2InstResultView" class="resultInfoAction" method="instResultViewNavigation">
+			<result name="success">pages/InstResultView.jsp</result>
+		</action>
+		<!-- xxx Navigation links xxx-->
+		
+		<!-- xxx Action Helper xxx-->
+		<action name="msgSender" class="msgTransHelper">
+			<result type="json">
+				<param name="ignoreHierarchy">true</param>
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+		<!-- xxx Action Helper xxx-->
+		
+		<!-- User Actions -->
+		<action name="deleteOperation" class="courseCreateAction" method="deleteCourse">
+			<result name="success" >pages/CourseInfoPage.jsp</result>
+			<result name="input" >pages/CourseInfoPage.jsp</result>
+			<result name="error">pages/CourseInfoPage.jsp</result>
+		</action>
+		<action name="createResult" class="resultInfoAction">
+			<result name="success">pages/InstSessSummary.jsp</result>
+		</action>
+		<action name="selectCourseOnResult" class="resultInfoAction" method="selectCourse">
+			<result name="success">pages/InstResultPanel.jsp</result>
+		</action>
+		<action name="selectInstSessOnResult" class="resultInfoAction" method="selectInstSess">
+			<result name="success">pages/InstResultPanel.jsp</result>
+		</action>
+		<action name="selectBatchOnResult" class="resultInfoAction" method="selectBatch">
+			<result name="success">pages/InstResultPanel.jsp</result>
+		</action>
+		<action name="getStdMarksheet" class="marksAction" method="subNExamFromCourse">
+			<result name="success">pages/marksheetView.jsp</result>
+		</action>
+		<action name="getStdMarksfromSess" class="marksAction" method="stdMarksFromSess">
+			<result name="success">pages/marksheetView.jsp</result>
+		</action>
+		<action name="getInstStdMarksfromSess" class="marksAction" method="fetchEditableMarks">
+			<result name="success">pages/marksheetView.jsp</result>
+		</action>
+		<action name="getInstStdFromBatch" class="stdCreationAction" method="getStdFromBatch">
+			<result name="success">pages/InstStdListView.jsp</result>
+		</action>
+		
+		<!-- xxx User Actions xxx -->
+		
+		<!-- xxx Ajax Actions xxx -->
+		<action name="showUpdateAjax" class="courseCreateAction" method="showUpdateAjax">
+				<result type="json">
+					<param name="excludeProperties">dao,fetchedAllSubjects,selectedFetchedSubs,subjectList,fetchedAllExamType,examTypeList,selectedExmTypes,fetchedAllCourse,nextCourse,previousCourse,btnPressed,updateCourseId,request,isUpdate</param>
+					<param name="ignoreHierarchy">true</param>
+					 <param name="excludeNullProperties">true</param>
+				</result>
+		</action>
+		<action name="getStdFromCourse" class="courseCreateAction" method="fetchStdFromCourse">
+				<result type="json">
+					<param name="excludeProperties">dao,fetchedAllSubjects,selectedFetchedSubs,subjectList,fetchedAllExamType,examTypeList,selectedExmTypes,fetchedAllCourse,nextCourse,previousCourse,btnPressed,updateCourseId,request,isUpdate,crsInfoList,crsInfoId,stdInfoIds,courseInfo,stdInfoIds,batchInfo,batchInfoList</param>
+					<param name="ignoreHierarchy">true</param>
+					 <param name="excludeNullProperties">true</param>
+				</result>
+		</action>
+		<action name="getExmTypFromCourse" class="examInfoAction" method="getExmTypeByCourse">
+				<result type="json">
+					<param name="excludeProperties">
+					dao,examInfo,courseInfoId,examtypeId,subjectId,isUpdate,examId,courseInfoList,subjectInfoList,fetchedExamInfos,isHistory
+					</param>
+					<param name="ignoreHierarchy">true</param>
+					 <param name="excludeNullProperties">true</param>
+				</result>
+		</action>
+		<action name="getExmNSessFromCourse" class="instSessInfoAction" method="getExmNSessFromCourse">
+				<result type="json">
+					<param name="excludeProperties">
+					dao,instSessInfo,courseInfoList,instSessInfoList,courseId,instSessInfoId,examIds,batchIds,isUpdate,isHistory
+					</param>
+					<param name="ignoreHierarchy">true</param>
+					 <param name="excludeNullProperties">true</param>
+				</result>
+		</action>
+		<action name="getSubFromExmTyp" class="examInfoAction" method="getSubFromExmType">
+				<result type="json">
+					<param name="excludeProperties">
+					dao,examInfo,courseInfoId,examtypeId,subjectId,isUpdate,examId,courseInfoList,examtypeList,fetchedExamInfos,isHistory
+					</param>
+					<param name="ignoreHierarchy">true</param>
+					 <param name="excludeNullProperties">true</param>
+				</result>
+		</action>
+		<action name="getBtchFromCourse" class="batchInfoAction" method="fetchBtchFromCourse">
+				<result type="json">
+					<param name="excludeProperties">
+					dao,fetchedAllSubjects,selectedFetchedSubs,subjectList,fetchedAllExamType,examTypeList,selectedExmTypes,
+					fetchedAllCourse,nextCourse,previousCourse,btnPressed,updateCourseId,request,isUpdate,crsInfoList,crsInfoId,
+					stdInfoIds,courseInfo,stdInfoList,stdInfoIds,batchInfo,btchInfoId</param>
+					<param name="ignoreHierarchy">true</param>
+					 <param name="excludeNullProperties">true</param>
+				</result>
+		</action>
+		<action name="getBtchNSessFromCourse" class="resultInfoAction" method="fetchBatchNInstSessFromCourse">
+				<result type="json">
+					<param name="excludeProperties">
+					dao,instSessInfoId,isAllSession,courseInfoId,batchId,isCrsHistory,courseInfoList,resultInfoList
+					</param>
+					<param name="ignoreHierarchy">true</param>
+					 <param name="excludeNullProperties">true</param>
+				</result>
+		</action>
+		<action name="getStdFromBtch" class="batchInfoAction" method="fetchStdFromBtch">
+				<result type="json">
+					<param name="excludeProperties">dao,fetchedAllSubjects,selectedFetchedSubs,subjectList,fetchedAllExamType,
+					examTypeList,selectedExmTypes,fetchedAllCourse,nextCourse,previousCourse,btnPressed,updateCourseId,request,
+					isUpdate,crsInfoList,crsInfoId,stdInfoIds,courseInfo,stdInfoIds,batchInfo,batchInfoList,btchInfoId</param>
+					<param name="ignoreHierarchy">true</param>
+					 <param name="excludeNullProperties">true</param>
+				</result>
+		</action>
+		<action name="getExamFromSub" class="subjectAction" method="fetchExamFromSub">
+			<result type="json">
+					<param name="excludeProperties">dao,subjectInfo,request,allSubjects,subId,courseId,errMsgTrans,subInfoList</param>
+					<param name="ignoreHierarchy">true</param>
+					 <param name="excludeNullProperties">true</param>
+				</result>
+		</action>
+		<action name="getSubFromCourse" class="subjectAction" method="fetchSubFromCourse">
+			<result type="json">
+					<param name="excludeProperties">dao,subjectInfo,request,allSubjects,subId,courseId,errMsgTrans,examInfoList</param>
+					<param name="ignoreHierarchy">true</param>
+					 <param name="excludeNullProperties">true</param>
+				</result>
+		</action>
+		<action name="getCoursesFromInst" class="stdCreationAction" method="getCoursesFromInst">
+			<result type="json">
+					<param name="excludeProperties">
+					dao,stdInfo,stdInfoList,courseInfoId,btchInfoId,instAdminId,isUpdate,isSearched,searchInput,viewType,userUID,request
+					</param>
+					<param name="ignoreHierarchy">true</param>
+					 <param name="excludeNullProperties">true</param>
+				</result>
+		</action>
+		<action name="getsubExmTypeFromCourse" class="marksAction" method="subNExamFromCourse">
+			<result type="json">
+					<param name="excludeProperties">
+					dao,marksInfo,stdId,exmId,btchInfoId,courseId,examInfoList,courseInfoList,instAdminList</param>
+					<param name="ignoreHierarchy">true</param>
+					 <param name="excludeNullProperties">true</param>
+				</result>
+		</action>
+		<action name="getbtchFromSess" class="marksAction" method="batchFromSess">
+			<result type="json">
+					<param name="excludeProperties">
+					dao,marksInfo,stdId,exmId,btchInfoId,courseId,instSessId,resInfo,isProfessional,
+					examInfoList,examTypeList,courseInfoList,subjectInfoList,instAdminList,marksInfoList,resultInfoList,marksSubwise,instSessList
+					</param>
+					<param name="ignoreHierarchy">true</param>
+					 <param name="excludeNullProperties">true</param>
+				</result>
+		</action>
+		<action name="getInstSessFromCourse" class="marksAction" method="instSessFromCourse">
+			<result type="json">
+					<param name="excludeProperties">
+					dao,marksInfo,stdId,exmId,btchInfoId,courseId,instSessId,resInfo,isProfessional,
+					examInfoList,examTypeList,courseInfoList,subjectInfoList,instAdminList,marksInfoList,resultInfoList,marksSubwise
+					</param>
+					<param name="ignoreHierarchy">true</param>
+					 <param name="excludeNullProperties">true</param>
+				</result>
+		</action>
+		<action name="getActiveInstSessFromCourse" class="marksAction" method="activeInstSessFromCourse">
+			<result type="json">
+					<param name="excludeProperties">
+					dao,marksInfo,stdId,exmId,btchInfoId,courseId,instSessId,resInfo,isProfessional,
+					examInfoList,examTypeList,courseInfoList,subjectInfoList,instAdminList,marksInfoList,resultInfoList,marksSubwise
+					</param>
+					<param name="ignoreHierarchy">true</param>
+					 <param name="excludeNullProperties">true</param>
+				</result>
+		</action>
+		<action name="showErrorMsg" class="loginAction" method="errorCreation">
+			<result type="json">
+					<param name="excludeProperties">request,usrname,password,dao</param>
+					<param name="ignoreHierarchy">true</param>
+					 <param name="excludeNullProperties">true</param>
+				</result>
+		</action>
+		<action name="usrNmAvailCheck" class="availCheck" method="usrNmAvail">
+			<result type="json">
+					<param name="excludeProperties">dao,usrNm</param>
+					<param name="ignoreHierarchy">true</param>
+					 <param name="excludeNullProperties">true</param>
+				</result>
+		</action>
+	<!-- xxx Ajax Actions xxx -->
+	<!-- Ajax get html -->
+		<action name="getUpdateableAchieve" class="achieveAction" method="getUpdatableAchieve">
+			<result name="success">pages/Achievement.jsp</result>
+		</action>
+		<action name="getUpdateableWorkExp" class="workExpAction" method="getUpdatableWorkExp">
+			<result name="success">pages/WorkExp.jsp</result>
+		</action>
+	<!-- xxx Ajax get html xxx -->
+	
+	
+	
+	<!-- logout -->
+			<action name="logout" class="logoutAction" method="logout">
+				<result name="success">/Login.jsp</result>
+				<result name="input">/Login.jsp</result>
+			</action>
+		<!-- xxx logout xxx -->
+	</package>
+	<include file="strutsFee.xml" />
+</struts>

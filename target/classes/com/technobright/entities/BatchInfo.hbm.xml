@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 13, 2012 11:37:58 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.BatchInfo" table="BATCHINFO">
+        <id name="batchId" type="long" access="field">
+            <column name="BATCHID" />
+            <generator class="increment" />
+        </id>
+        <property name="batchName" type="java.lang.String">
+            <column name="BATCHNAME" />
+        </property>
+        <property name="maxNoOfStd" type="int">
+            <column name="MAXNOOFSTD" />
+        </property>
+        <property name="isHistory" type="boolean" access="field">
+            <column name="ISHISTORY" />
+        </property>
+        <many-to-one name="courseInfo" class="com.technobright.entities.CourseInfo" fetch="join">
+            <column name="COURSEID" />
+        </many-to-one>
+         <many-to-one name="instAdmin" class="com.technobright.entities.InstAdmin" fetch="join">
+            <column name="INSTADMIN" />
+        </many-to-one>
+        <bag name="batch_stdInfoList" inverse="true" table="BATCH_STDINFO" lazy="true" access="property" >
+            <key>
+                <column name="BATCHID" />
+            </key>
+            <one-to-many class="com.technobright.entities.Batch_StdInfo"/>
+        </bag>
+    </class>
+</hibernate-mapping>

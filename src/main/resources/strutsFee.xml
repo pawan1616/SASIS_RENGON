@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="false" />
+	
+	<package name="fee" extends="default1" namespace="/fee">
+	
+		<!-- Navigations -->
+		<action name="nav2Fee" class="feeSettingAction" method="feeNavigation">
+			<result name="success">/pages/FeePages/FeeTemplate.jsp</result>
+		</action>
+		<action name="nav2FeeSetting" class="feeSettingAction" method="feeSettingNavigation">
+			<result name="success">/pages/FeePages/FeeSetting.jsp</result>
+		</action>
+		<action name="nav2TotalCourseFee" class="feeSettingAction" method="totalCourseFeeNavigation">
+			<result name="success">/pages/FeePages/TotalCourseFee.jsp</result>
+		</action>
+		<action name="nav2FeeSettingOption" class="feeSettingAction" method="feeSettingOptionNavigation">
+			<result name="totalCourseFee">/pages/FeePages/TotalCourseFee.jsp</result>
+			<result name="installments">/pages/FeePages/Installments.jsp</result>
+			<result name="lateFee">/pages/FeePages/LateFee.jsp</result>
+			<result name="scholarship">/pages/FeePages/Scholarship.jsp</result>
+			<result name="otherAccesories">/pages/FeePages/OtherAccessories.jsp</result>
+		</action>
+		<!-- xxx Navigation xxx -->
+		
+		<!-- User Actions -->
+		<action name="createInstallments" class="feeSettingAction" method="createInstallments">
+			<result name="installments">/pages/FeePages/Installments.jsp</result>
+		</action>
+		<action name="changeCourseInstallment" class="feeSettingAction" method="changeCourseInstallment">
+			<result name="installments">/pages/FeePages/Installments.jsp</result>
+		</action>
+		<!--xxx User Actions xxx-->
+		
+		<!-- Submit Actions-->
+		<action name="createLateFee" class="feeSettingAction" method="createLateFee">
+			<result name="success">/pages/FeePages/LateFee.jsp</result>
+		</action>
+		<action name="createTotalCourseFee" class="feeSettingAction" method="createTotalFee">	
+			<result name="success">/pages/FeePages/TotalCourseFee.jsp</result>
+		</action>
+		<action name="saveInstallments" class="feeSettingAction" method="saveInstallment">	
+			<result name="installments">/pages/FeePages/Installments.jsp</result>
+		</action>
+		<action name="createScholarship" class="feeSettingAction" method="createScholarship">	
+			<result name="installments">/pages/FeePages/Scholarship.jsp</result>
+		</action>
+		<action name="createOtherAccessories" class="feeSettingAction" method="createOtherAccessories">	
+			<result name="installments">/pages/FeePages/OtherAccessories.jsp</result>
+		</action>
+		
+		<!-- xxx Submit Actions xxx -->
+		
+		<!-- Json action -->
+		<action name="getInstallmentsFromCourse" class="feeSettingAction" method="getInstallmentFromCourse">
+			<result type="json">
+					<param name="excludeProperties">
+					dao,daoFee,totalCourseFee,scholShip,lateFee,otherFee,courseId,stdIdList,batchId,sessId,feeTypeId,noOfInstallment,feeTypeList,
+					courseInfoList,installmentsDisplayMap,installmentsSaveList,selectedInstallments				
+					</param>
+					<param name="ignoreHierarchy">true</param>
+					 <param name="excludeNullProperties">true</param>
+				</result>
+		</action>
+		<!-- xxx Json Action xxx -->
+	
+	</package>
+</struts>

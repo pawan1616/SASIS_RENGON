@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="hbmMappings" parent="sessionFactoryHbms">
+		<property name="mappingResources">
+			<list>
+				<value>com/technobright/entities/UserInfo.hbm.xml</value>
+				<value>com/technobright/entities/SubjectInfo.hbm.xml</value>
+				<value>com/technobright/entities/ExamType.hbm.xml</value>
+				<value>com/technobright/entities/ExamInfo.hbm.xml</value>
+				<value>com/technobright/entities/CourseInfo.hbm.xml</value>
+				<value>com/technobright/entities/InstAdmin.hbm.xml</value>
+				<value>com/technobright/entities/Page.hbm.xml</value>
+				<value>com/technobright/entities/UserPreference.hbm.xml</value>
+				<value>com/technobright/entities/UserRole.hbm.xml</value>
+				<value>com/technobright/entities/StudentInfo.hbm.xml</value>
+				<value>com/technobright/entities/BatchInfo.hbm.xml</value>
+				<value>com/technobright/entities/Course_StdInfo.hbm.xml</value>
+				<value>com/technobright/entities/InstAdmin_StdInfo.hbm.xml</value>
+				<value>com/technobright/entities/MarksInfo.hbm.xml</value>
+				<value>com/technobright/entities/Batch_StdInfo.hbm.xml</value>
+				<value>com/technobright/entities/StdWorkExp.hbm.xml</value>
+				<value>com/technobright/entities/Achievement.hbm.xml</value>
+				<value>com/technobright/entities/ProfilePic.hbm.xml</value>
+				<value>com/technobright/entities/Inst_Subjects.hbm.xml</value>
+				<value>com/technobright/entities/InstSessionInfo.hbm.xml</value>
+				<value>com/technobright/entities/GradInfo.hbm.xml</value>
+				<value>com/technobright/entities/ResultInfo.hbm.xml</value>
+				<value>com/technobright/entities/Batch_InstSess.hbm.xml</value>
+				
+				
+				<!-- fee -->
+				
+				<!-- xxx fee xxx -->
+				
+			</list>
+		</property>
+	</bean>
+
+</beans>

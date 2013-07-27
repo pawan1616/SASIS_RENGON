@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 15, 2012 1:21:46 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.Batch_StdInfo" table="BATCH_STDINFO">
+        <id name="pkId" type="long">
+            <column name="PKID" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="batchInfo" class="com.technobright.entities.BatchInfo" fetch="join" >
+            <column name="BATCHID" />
+        </many-to-one>
+        <many-to-one name="studentInfo" class="com.technobright.entities.StudentInfo" fetch="join">
+            <column name="STDID" />
+        </many-to-one>
+        <property name="isActive" type="boolean">
+            <column name="ISACTIVE" />
+        </property>
+    </class>
+</hibernate-mapping>

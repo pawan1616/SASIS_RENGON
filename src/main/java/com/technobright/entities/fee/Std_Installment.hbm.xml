@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 18, 2013 3:27:16 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.fee.Std_Installment" table="STD_INSTALLMENT">
+        <id name="stdInstallmentId" type="long">
+            <column name="STDINSTALLMENTID" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="stdInfo" class="com.technobright.entities.StudentInfo" fetch="join">
+            <column name="STDINFO" />
+        </many-to-one>
+        <many-to-one name="installment" class="com.technobright.entities.fee.Installments" fetch="join">
+            <column name="INSTALLMENT" />
+        </many-to-one>
+        <property name="isPaid" type="boolean">
+            <column name="ISPAID" />
+        </property>
+        <property name="isSpecial" type="boolean">
+            <column name="ISSPECIAL" />
+        </property>
+    </class>
+</hibernate-mapping>

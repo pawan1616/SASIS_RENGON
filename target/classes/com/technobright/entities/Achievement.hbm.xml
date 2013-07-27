@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 2, 2013 10:50:21 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.Achievement" table="ACHIEVEMENT">
+        <id name="achieveId" type="int">
+            <column name="ACHIEVETID" />
+            <generator class="increment" />
+        </id>
+        <property name="achieveName" type="java.lang.String">
+            <column name="ACHIEVENAME" />
+        </property>
+        <property name="achieveDescription" type="java.lang.String">
+            <column name="ACHIEVEDESCRIPTION" />
+        </property>
+        <property name="modifiedDate" type="java.util.Date">
+            <column name="MODIFIEDDATE" />
+        </property>
+        <many-to-one name="stdInfo" class="com.technobright.entities.StudentInfo" insert="true" update="true" lazy="false">
+            <column name="STDINFO" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

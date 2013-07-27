@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 30, 2012 5:28:54 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.Page" table="PAGE">
+        <id name="pageId" type="int">
+            <column name="PAGEID" />
+            <generator class="increment" />
+        </id>
+        <property name="pageName" type="java.lang.String">
+            <column name="PAGENAME" />
+        </property>
+        <property name="actPageName" type="java.lang.String">
+            <column name="ACTPAGENAME" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        <bag name="usrPrefs" inverse="false" table="PAGE_USRPREF" lazy="false"   fetch="select">
+            <key>
+                <column name="PAGEID"/>
+            </key>
+            <many-to-many column="USRPREFID" class="com.technobright.entities.UserPreference" />
+        </bag>
+    </class>
+</hibernate-mapping>

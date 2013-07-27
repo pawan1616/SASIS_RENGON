@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 26, 2013 11:51:43 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.GradInfo" table="GRADINFO">
+        <id name="gradId" type="long">
+            <column name="GRADID" />
+            <generator class="increment" />
+        </id>
+        <property name="gradName" type="java.lang.String">
+            <column name="GRADNAME" />
+        </property>
+        <property name="lowRange" type="int">
+            <column name="LOWRANGE" />
+        </property>
+        <property name="highRange" type="int">
+            <column name="HIGHRANGE" />
+        </property>
+        <property name="gradPoint" type="float">
+            <column name="GRADPOINT" />
+        </property>
+         <property name="isHistory" type="boolean">
+            <column name="ISHISTORY" />
+        </property>
+        <many-to-one name="instAdmin" class="com.technobright.entities.InstAdmin" fetch="join">
+            <column name="INSTADMIN" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

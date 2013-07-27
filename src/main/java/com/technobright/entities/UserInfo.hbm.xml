@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 19, 2012 3:58:44 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.UserInfo" table="USERINFO">
+        <id name="userUID" type="int">
+            <column name="USERUID" />
+            <generator class="increment" />
+        </id>
+        <property name="userName" type="java.lang.String" unique="true">
+            <column name="USERNAME" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <property name="userType" type="java.lang.String">
+            <column name="USERTYPE" />
+        </property>
+        <property name="firstName" type="java.lang.String">
+            <column name="FIRSTNAME" />
+        </property>
+        <property name="lastName" type="java.lang.String">
+            <column name="LASTNAME" />
+        </property>
+        <property name="initials" type="java.lang.String">
+            <column name="INITIALS" />
+        </property>
+        <many-to-one name="usrRole" class="com.technobright.entities.UserRole" insert="true" update="true" lazy="false">
+         	<column name="USRROLEID"/>
+        </many-to-one>
+         <property name="isAdmin" type="boolean">
+            <column name="ISADMIN" />
+        </property>
+    </class>
+</hibernate-mapping>

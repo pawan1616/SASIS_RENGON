@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<!-- aop -->	
+	<bean id="logging" class="com.technobright.aop.LoggingAop"/>
+	<aop:config proxy-target-class="true">
+		<aop:aspect id="exeLogging" ref="logging">
+		<aop:pointcut expression="execution(* com.technobright.actions.*.*(..))" id="executeLog"/>
+		<aop:before method="beforeMethod" pointcut-ref="executeLog"/>
+		<aop:after method="afterMethod" pointcut-ref="executeLog"/>
+		<aop:after-throwing method="afterThrowing" pointcut-ref="executeLog" throwing="e"/>
+		</aop:aspect>
+	</aop:config>
+	<aop:aspectj-autoproxy/>
+	<!-- xxx aop xxx -->	
+	
+	<!-- Navigation -->
+	<bean id="navigation" class="com.technobright.actions.NavigationAction">
+		<property name="dao" ref="daoDerbyImpl" />
+	</bean>
+	<!-- xxx Navigation xxx -->
+	
+
+	<!-- DAO -->
+	<bean id="daoDerbyImpl" class="com.technobright.dao.DAODerbyImpl"
+		scope="prototype">
+		<property name="sessionFactory" ref="hbmMappings" />
+	</bean>
+	<bean id="daoFeeImpl" class="com.technobright.dao.DAOFeeImpl"
+		scope="prototype">
+		<property name="sessionFactory" ref="hbmMappingsFee" />
+	</bean>
+	<!-- xxx DAO xxx -->
+
+	<!-- Actions -->
+	<bean id="loginAction" class="com.technobright.actions.LoginAction"
+		scope="request">
+		<property name="dao" ref="daoDerbyImpl" />
+		<property name="errorMsgTransporter" ref="errorMsgTransporter"/>
+	</bean>
+	<bean id="errMsgTranportAction" class="com.technobright.actions.ErrorMsgTransportAction" scope="request">
+		<property name="errorMsgTransporter" ref="errorMsgTransporter"/>
+	</bean>
+	<bean id="logoutAction" class="com.technobright.actions.LogoutAction"
+		scope="prototype">
+	</bean>
+	<bean id="createAccAction" class="com.technobright.actions.CreateAccountAction"	scope="session">
+		<property name="dao" ref="daoDerbyImpl" />
+	</bean>
+
+	
+	<bean id="courseCreateAction" class="com.technobright.actions.CourseCreateAction" scope="session">
+		<property name="courseInfo" ref="courseInfo"/>
+		<property name="batchInfo" ref="batchInfo"/>
+		<property name="stdInfoIds">
+			<list></list>
+		</property>
+		<property name="dao" ref="daoDerbyImpl"/>
+	</bean>
+	<bean id="batchInfoAction" class="com.technobright.actions.BatchInfoAction" scope="session">
+		<property name="batchInfo" ref="batchInfo"/>
+		<property name="stdInfoIds">
+			<list></list>
+		</property>
+		<property name="dao" ref="daoDerbyImpl"/>
+	</bean>
+	<bean id="instSessInfoAction" class="com.technobright.actions.SessionInfoAction" scope="session">
+		<property name="instSessInfo" ref="instSessInfo"/>
+		<property name="examIds">
+			<list></list>
+		</property>
+		<property name="examInfoList">
+			<list></list>
+		</property>
+		<property name="courseInfoList">
+			<list></list>
+		</property>
+		<property name="dao" ref="daoDerbyImpl"/>
+	</bean>
+	<bean id="gradInfoAction" class="com.technobright.actions.GradInfoAction" scope="session">
+		<property name="gradInfo" ref="gradInfo"/>
+		<property name="dao" ref="daoDerbyImpl"/>
+		<property name="gradInfoList">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="examInfoAction" class="com.technobright.actions.ExamInfoAction" scope="session">
+		<property name="examInfo" ref="examInfo"/>
+		<property name="dao" ref="daoDerbyImpl"/>
+	</bean>
+	<bean id="examTypeAction" class="com.technobright.actions.ExamTypeAction" scope="session">
+		<property name="examType" ref="examType"/>
+		<property name="dao" ref="daoDerbyImpl"/>
+	</bean>
+	<bean id="subjectAction" class="com.technobright.actions.SubjectAction" scope="session">
+		<property name="subjectInfo" ref="subjectInfo"/>
+		<property name="dao" ref="daoDerbyImpl"/>
+	</bean>
+	<bean id="stdCreationAction" class="com.technobright.actions.StudentCreationAction" scope="session">
+		<property name="dao" ref="daoDerbyImpl"/>
+		<property name="stdInfo" ref="stdInfo"/>
+	</bean>
+	<bean id="stdProfileEditAction" class="com.technobright.actions.StdProfileEditAction" scope="session">
+		<property name="dao" ref="daoDerbyImpl"/>
+		<property name="stdInfo" ref="stdInfo"/>
+	</bean>
+	<bean id="accountSettingAction" class="com.technobright.actions.AccountSettingAction" scope="session">
+		<property name="dao" ref="daoDerbyImpl"/>
+		<property name="stdInfo" ref="stdInfo"/>
+	</bean>
+	<bean id="userRoleAction" class="com.technobright.actions.UserRoleAction" scope="session">
+		<property name="dao" ref="daoDerbyImpl"/>
+		<property name="usrRole" ref="usrRole"/>
+		<property name="selUsrPrefs">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="instCreate" class="com.technobright.actions.InstCreation" scope="session">
+		<property name="dao" ref="daoDerbyImpl"/>
+		<property name="instAdmin" ref="instAdmin"/>
+		<property name="errMsgTrans" ref="errorMsgTransporter"/>
+	</bean>
+	<bean id="usrProfileAction" class="com.technobright.actions.UserProfileAction" scope="session">
+		<property name="dao" ref="daoDerbyImpl"/>
+		<property name="instAdmin" ref="instAdmin"/>
+		<property name="stdInfo" ref="stdInfo"/>
+	</bean>
+	<bean id="marksAction" class="com.technobright.actions.MarksAction">
+		<property name="dao" ref="daoDerbyImpl"/>
+		<property name="marksInfo" ref="marksInfo"/>
+	</bean>
+	<bean id="workExpAction" class="com.technobright.actions.WorkExpAction">
+		<property name="dao" ref="daoDerbyImpl"/>
+		<property name="stdInfo" ref="stdInfo"/>
+		<property name="stdWorkExp" ref="stdWorkExp"/>
+	</bean>
+	<bean id="achieveAction" class="com.technobright.actions.AchieveAction">
+		<property name="dao" ref="daoDerbyImpl"/>
+		<property name="stdInfo" ref="stdInfo"/>
+		<property name="achieve" ref="achieve"/>
+	</bean>
+	<bean id="availCheck" class="com.technobright.actions.AvailabilityCheck">
+		<property name="dao" ref="daoDerbyImpl"/>
+	</bean>
+	<bean id="resultInfoAction" class="com.technobright.actions.ResultInfoAction" scope="session">
+		<property name="dao" ref="daoDerbyImpl"/>
+	</bean>
+		<!-- Fee Actions -->
+			<bean name="feeSettingAction" class="com.technobright.actions.Fee.FeeSettingAction" scope="session">
+				<property name="dao" ref="daoDerbyImpl"/>
+				<property name="daoFee" ref="daoFeeImpl"/>
+				<property name="totalCourseFee" ref="totalCourseFee"/>
+				<property name="scholShip" ref="scholarship"/>
+				<property name="lateFee" ref="lateFee"/>
+			</bean>
+			
+		<!-- xxx Fee Actions xxx -->
+	<!-- xxx Actions xxx -->
+	
+	
+	<!-- xxx Actions helper xxx -->
+	<bean id="msgTransHelper" class="com.technobright.actions.MsgTransferHelper" scope="session"/>
+	<!-- xxx Actions helper xxx -->
+
+	<!-- Entities -->
+	<bean id="courseInfo" class="com.technobright.entities.CourseInfo" scope="prototype">
+		<property name="subjectList">
+			<list></list>
+		</property>
+		<property name="examTypeList">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="examInfo" class="com.technobright.entities.ExamInfo" scope="prototype"/>
+	<bean id="examType" class="com.technobright.entities.ExamType" scope="prototype">
+		<property name="subjectList">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="subjectInfo" class="com.technobright.entities.SubjectInfo" scope="session"/>
+	<bean id="stdInfo" class="com.technobright.entities.StudentInfo" scope="prototype">
+		<property name="instAdminList">
+			<list></list>
+		</property>
+		<property name="course_StdInfoList">
+			<list></list>
+		</property>
+		<property name="marksInfoList">
+			<list></list>
+		</property>
+		<property name="batch_StdInfoList">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="errorMsgTransporter" class="com.technobright.entities.ErrorMsgTransporter" scope="prototype">
+		<property name="errMsg">
+			<map></map>
+		</property>
+	</bean>
+	<bean id="instSessInfo" class="com.technobright.entities.InstSessionInfo" scope="prototype">
+		<property name="examInfoList">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="usrRole" class="com.technobright.entities.UserRole" scope="prototype"/>
+	<bean id="instAdmin" class="com.technobright.entities.InstAdmin" scope="prototype"/>
+	<bean id="marksInfo" class="com.technobright.entities.MarksInfo" scope="prototype"/>
+	<bean id="batchInfo" class="com.technobright.entities.BatchInfo" scope="prototype"/>
+	<bean id="stdWorkExp" class="com.technobright.entities.StdWorkExp" scope="prototype"/>
+	<bean id="achieve" class="com.technobright.entities.Achievement" scope="prototype"/>
+	<bean id="profilePic" class="com.technobright.entities.ProfilePic" scope="prototype"/>
+	<bean id="resultInfo" class="com.technobright.entities.ResultInfo" scope="prototype"/>
+	<bean id="gradInfo" class="com.technobright.entities.GradInfo" scope="prototype"/>
+	<bean id="totalCourseFee" class="com.technobright.entities.fee.TotalCourseFee" scope="prototype"/>
+	<bean id="lateFee" class="com.technobright.entities.fee.LateFee" scope="prototype"/>
+	<bean id="scholarship" class="com.technobright.entities.fee.Scholarship" scope="prototype"/>
+	<!-- xxx Entities xxx -->
+
+	<!-- App Settings -->
+		<bean id="sasisCtxListenerImpl" class="com.technobright.appSettings.SASISCtxListenerImpl">
+			<property name="dao" ref="daoDerbyImpl"/>
+		</bean>
+	<!-- xxx App Settings xxx -->
+
+	<import resource="/DataSourceBeanConfig.xml" />
+	<import resource="/SessionFactoriesWithHBMs.xml" />
+	<import resource="/SessionFactoriesWithHBMsFee.xml" />
+	<import resource="/TransactionConfig.xml" />
+</beans>

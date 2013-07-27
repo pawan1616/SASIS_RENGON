@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 20, 2012 12:16:33 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.ExamType" table="EXAMTYPE">
+    <cache usage="transactional"/>
+        <id name="examTypeId" type="int">
+            <column name="EXAMTYPEID" />
+            <generator class="increment" />
+        </id>
+        <property name="examTypeName" type="java.lang.String">
+            <column name="EXAMTYPENAME" />
+        </property>
+        <property name="isGrad" type="boolean" access="field">
+            <column name="ISGRAD" />
+        </property>
+        <property name="percentToBeContri" type="float">
+            <column name="PERCENTTOBECONTRI" />
+        </property>
+        <property name="introducedYear" type="java.util.Date">
+            <column name="INTRODUCEDYEAR" />
+        </property>
+        <property name="modifiedYear" type="java.util.Date">
+            <column name="MODIFIEDYEAR" />
+        </property>
+        <property name="extraInfo" type="java.lang.String">
+            <column name="EXTRAINFO" />
+        </property>
+        <property name="startTime" type="java.util.Date">
+            <column name="STARTTIME" />
+        </property>
+        <property name="endTime" type="java.util.Date">
+            <column name="ENDTIME" />
+        </property>
+        <property name="isNotify" type="boolean" access="field">
+            <column name="ISNOTIFY" />
+        </property>
+        <property name="isHistory" type="boolean" access="field">
+            <column name="ISHISTORY" />
+        </property>
+        <bag name="subjectList" table="EXAMTYPE_SUBJECTINFO" lazy="false" fetch="select">
+            <key on-delete="noaction">
+                <column name="EXAMTYPEID" />
+            </key>
+            <many-to-many column="SUBJECTID" class="com.technobright.entities.SubjectInfo"/>
+        </bag>
+        <!-- <bag name="examInfoList" table="EXAMINFO" lazy="false"   fetch="select">
+            <key on-delete="noaction">
+                <column name="EXAMTYPE"/>
+            </key>
+            <one-to-many class="com.technobright.entities.ExamInfo" />
+        </bag> -->
+        <many-to-one name="instAdmin" class="com.technobright.entities.InstAdmin" fetch="select" cascade="none" lazy="false">
+            <column name="ADMINID" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 20, 2012 12:16:33 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.CourseInfo" table="COURSEINFO">
+        <id name="courseId" type="long">
+            <column name="COURSEID" />
+            <generator class="increment" />
+        </id>
+        <property name="courseName" type="java.lang.String">
+            <column name="COURSENAME" />
+        </property>
+        <property name="courseType" type="java.lang.String">
+            <column name="COURSETYPE" />
+        </property>
+        <property name="isProfessional" type="boolean">
+            <column name="ISPROFESSIONAL" />
+        </property>
+        <property name="courseTypeKey" type="java.lang.String">
+            <column name="COURSETYPEKEY" />
+        </property>
+        <property name="totalNoOfSeat" type="java.lang.String">
+            <column name="TOTALNOOFSEAT" />
+        </property>
+        <property name="introducedYear" type="java.util.Date">
+            <column name="INTRODUCEDYEAR" />
+        </property>
+        <property name="modifiedYear" type="java.util.Date">
+            <column name="MODIFIEDYEAR" />
+        </property>
+        <many-to-one name="previousCourse" class="com.technobright.entities.CourseInfo" fetch="select" cascade="none" lazy="false">
+            <column name="PREVIOUSCOURSE" />
+        </many-to-one>
+        <many-to-one name="nextCourse" class="com.technobright.entities.CourseInfo" fetch="select" cascade="none" lazy="false">
+            <column name="NEXTCOURSE" />
+        </many-to-one>
+        <property name="isHistory" type="boolean" access="field">
+            <column name="ISHISTORY" />
+        </property>
+        <bag name="subjectList" table="COURSE_SUBJECTINFO" lazy="true"  fetch="select">
+            <key on-delete="noaction">
+                <column name="COURSEID" />
+            </key>
+            <many-to-many column="SUBJECTID" class="com.technobright.entities.SubjectInfo"/>
+        </bag>
+        <bag name="examTypeList" table="COURSE_EXAMTYPE" lazy="true"   fetch="select">
+            <key on-delete="noaction">
+                <column name="COURSEID"/>
+            </key>
+            <many-to-many column="EXAMTYPEID" class="com.technobright.entities.ExamType" />
+        </bag>
+        <bag name="examInfoList" table="EXAMINFO" lazy="true"   fetch="select">
+            <key on-delete="noaction">
+                <column name="COURSEINFO"/>
+            </key>
+            <one-to-many class="com.technobright.entities.ExamInfo" />
+        </bag>
+        <bag name="batchInfoList" inverse="true" table="BATCHINFO" lazy="true" access="property"  fetch="select" >
+            <key on-delete="noaction">
+                <column name="COURSEID"/>
+            </key>
+            <one-to-many class="com.technobright.entities.BatchInfo" />
+        </bag>
+        <many-to-one name="instAdmin" class="com.technobright.entities.InstAdmin" insert="true" update="true" lazy="false">
+            <column name="ADMINID" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

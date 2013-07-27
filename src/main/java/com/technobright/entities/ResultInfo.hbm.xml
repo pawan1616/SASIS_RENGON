@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 26, 2013 11:55:22 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.ResultInfo" table="RESULTINFO">
+        <id name="resultId" type="long">
+            <column name="RESULTID" />
+            <generator class="increment" />
+        </id>
+        <property name="result" type="boolean">
+            <column name="RESULT" />
+        </property>
+        <property name="grade" type="java.lang.String">
+            <column name="GRADE" />
+        </property>
+         <property name="marksGained" type="float">
+            <column name="MARKSGAINED" />
+        </property>
+         <property name="percentage" type="float">
+            <column name="PERCENTAGE" />
+        </property>
+        <many-to-one name="instSessInfo" class="com.technobright.entities.InstSessionInfo" fetch="join">
+            <column name="INSTSESSINFO" />
+        </many-to-one>
+        <many-to-one name="stdInfo" class="com.technobright.entities.StudentInfo" fetch="join">
+            <column name="STDINFO" />
+        </many-to-one>
+        <many-to-one name="instAdmin" class="com.technobright.entities.InstAdmin" fetch="join">
+            <column name="INSTADMIN" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

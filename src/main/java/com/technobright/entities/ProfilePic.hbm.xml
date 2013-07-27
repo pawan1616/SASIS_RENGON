@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 3, 2013 9:29:54 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.ProfilePic" table="PROFILEPIC">
+        <id name="picId" type="int">
+            <column name="PICID" />
+            <generator class="increment" />
+        </id>
+        <property name="picPath" type="java.lang.String">
+            <column name="PICPATH" />
+        </property>
+        <property name="caption" type="java.lang.String">
+            <column name="CAPTION" />
+        </property>
+         <property name="isCurrent" type="boolean">
+            <column name="ISCURRENT" />
+        </property>
+        <property name="picName" type="java.lang.String">
+            <column name="PICNAME" />
+        </property>
+        <many-to-one name="stdInfo" class="com.technobright.entities.StudentInfo" insert="true" update="true" lazy="false">
+            <column name="STDINFO" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

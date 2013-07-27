@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 30, 2012 5:28:54 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.InstAdmin" table="INSTADMIN">
+        <id name="adminId" type="int">
+            <column name="ADMINID" />
+            <generator class="increment" />
+        </id>
+        <property name="schoolName" type="java.lang.String">
+            <column name="SCHOOLNAME" />
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="ADDRESS" />
+        </property>
+        <property name="addressLine2" type="java.lang.String">
+            <column name="ADDRESS2" />
+        </property>
+        <property name="addressLine3" type="java.lang.String">
+            <column name="ADDRESS3" />
+        </property>
+         <property name="city" type="java.lang.String">
+            <column name="CITY" />
+        </property>
+         <property name="state" type="java.lang.String">
+            <column name="STATE" />
+        </property>
+         <property name="country" type="java.lang.String">
+            <column name="COUNTRY" />
+        </property>
+        <property name="pin" type="java.lang.String">
+            <column name="PIN" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="EMAIL" />
+        </property>
+        <property name="contactNo" type="java.lang.String">
+            <column name="CONTACTNO" />
+        </property>
+         <property name="instType" type="java.lang.String">
+            <column name="INSTTYPE" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        <property name="userName" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <bag name="userInfoList" inverse="true" table="INSTADMIN_USRINFO" lazy="false">
+            <key>
+                <column name="ADMINID" />
+            </key>
+            <many-to-many class="com.technobright.entities.UserInfo" column="USRUID"/>
+        </bag>
+        <bag name="courseInfoList" inverse="true" table="COURSEINFO" lazy="true">
+            <key>
+                <column name="ADMINID" />
+            </key>
+            <one-to-many class="com.technobright.entities.CourseInfo" />
+        </bag>
+        <bag name="studentInfoList" inverse="true" table="INSTADMIN_STDINFO" lazy="true">
+            <key>
+                <column name="ADMINID" />
+            </key>
+            <one-to-many class="com.technobright.entities.InstAdmin_StdInfo"/>
+        </bag>
+       <!--  <bag name="subjectInfoList" inverse="true" table="SUBJECTINFO" lazy="true">
+            <key>
+                <column name="ADMINID" />
+            </key>
+            <one-to-many class="com.technobright.entities.SubjectInfo"/>
+        </bag> -->
+        <bag name="inst_SubList" inverse="true" table="INST_SUBJECTS" lazy="true" >
+            <key>
+                <column name="INSTADMINID" />
+            </key>
+            <one-to-many class="com.technobright.entities.Inst_Subjects"/>
+        </bag>
+        <property name="userId" type="int">
+            <column name="USERID" />
+        </property>
+    </class>
+</hibernate-mapping>

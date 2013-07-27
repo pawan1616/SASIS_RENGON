@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 3, 2012 12:10:47 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.ExamInfo" table="EXAMINFO">
+        <id name="examId" type="long">
+            <column name="EXAMID" />
+            <generator class="increment" />
+        </id>
+        <property name="isCombineExam" type="boolean" access="field">
+            <column name="ISCOMBINEEXAM" />
+        </property>
+        <property name="examName" type="java.lang.String">
+            <column name="EXAMNAME" />
+        </property>
+        <property name="examDate" type="java.util.Date">
+            <column name="EXAMDATE" />
+        </property>
+        <property name="examPlace" type="java.lang.String">
+            <column name="EXAMPLACE" />
+        </property>
+        <property name="examYear" type="int">
+            <column name="EXAMYEAR" />
+        </property>
+        <property name="isPercentWise" type="boolean" access="field">
+            <column name="ISPERCENTWISE" />
+        </property>
+        <property name="passPercentOrMark" type="float">
+            <column name="PASSPERCENTORMARK" />
+        </property>
+        <property name="totalMarks" type="float">
+            <column name="TOTALMARKS" />
+        </property>
+        <property name="percentToBeContri" type="float">
+            <column name="PERCENTTOBECONTRI" />
+        </property>
+        <!-- <property name="percentContriInMain" type="float">
+            <column name="PERCENTCONTRIINMAIN" />
+        </property> -->
+        <property name="isHistory" type="boolean">
+            <column name="ISHISTORY" />
+        </property>
+        <property name="ifFailAllFail" type="boolean">
+            <column name="IFFAILALLFAIL" />
+        </property>
+         <property name="ifFailAllCombineFail" type="boolean">
+            <column name="IFFAILALLCOMBINEFAIL" />
+        </property>
+        <many-to-one name="courseInfo" class="com.technobright.entities.CourseInfo" fetch="join">
+            <column name="COURSEINFO" />
+        </many-to-one>
+        <many-to-one name="examType" class="com.technobright.entities.ExamType" fetch="join">
+            <column name="EXAMTYPE" />
+        </many-to-one>
+        <many-to-one name="subjectInfo" class="com.technobright.entities.SubjectInfo" fetch="join">
+            <column name="SUBJECTID" />
+        </many-to-one>
+        <many-to-one name="parentExam" class="com.technobright.entities.ExamInfo" fetch="join">
+            <column name="PARENTEXAM" />
+        </many-to-one>
+        <many-to-one name="childExam" class="com.technobright.entities.ExamInfo" fetch="join">
+            <column name="CHILDEXAM" />
+        </many-to-one>
+        <property name="childExamName" type="java.lang.String">
+            <column name="CHILDEXAMNAME" />
+        </property>
+        <many-to-one name="instAdmin" class="com.technobright.entities.InstAdmin" fetch="join">
+            <column name="INSTADMIN" />
+        </many-to-one>
+        <many-to-one name="instSess" class="com.technobright.entities.InstSessionInfo" fetch="join">
+            <column name="INSTSESSINFOID" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

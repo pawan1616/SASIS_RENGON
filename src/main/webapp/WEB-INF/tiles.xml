@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<!-- Sasis template Definitions -->
+<tiles-definitions>
+ <definition name="baseLayout" template="/sasis_template.jsp">
+	<put-attribute name="title"  value="Sucess Page"/>
+	<put-attribute name="body"   value="/success.jsp"/>
+</definition>
+<definition name="welcome" extends="baseLayout">
+	<put-attribute name="title"  value="Welcome"/>
+	<put-attribute name="body"   value="/pages/success.jsp"/>     
+</definition>
+<definition name="courseInfo" extends="baseLayout">
+	<put-attribute name="title" value="Course Information"/>
+	<put-attribute name="body" value="/pages/CourseInfoPage.jsp"></put-attribute>
+</definition>
+<definition name="examInfo" extends="baseLayout">
+	<put-attribute name="title" value="Exam Information"/>
+	<put-attribute name="body" value="/pages/ExamInfoPage.jsp"/>
+</definition>
+<definition name="examType" extends="baseLayout">
+	<put-attribute name="title" value="Exam Type"/>
+	<put-attribute name="body" value="/pages/ExamTypePage.jsp"/>
+</definition>
+<definition name="subjectInfo" extends="baseLayout">
+	<put-attribute name="title" value="Subjects"/>
+	<put-attribute name="body" value="/pages/SubjectPage.jsp"/>
+</definition>
+<definition name="studentCreation" extends="baseLayout">
+	<put-attribute name="title" value="Student Creation"/>
+	<put-attribute name="body" value="/pages/StudentCreationPage.jsp"/>
+</definition>
+<definition name="userRole" extends="baseLayout">
+	<put-attribute name="title" value="User Role"/>
+	<put-attribute name="body" value="/pages/UserRole.jsp"/>
+</definition>
+<!-- xxx Sasis template Definitions xxx -->
+
+<!-- Simple template definitions -->
+<definition name="simpleBaseLayout" template="/SimpleTheme.jsp">
+	<put-attribute name="title" value="Simple"/>
+	<put-attribute name="body" value="/CreateAccPage.jsp"/>
+</definition>
+<definition name="createAccount" extends="simpleBaseLayout">
+	<put-attribute name="title" value="Create Account"/>
+	<put-attribute name="body" value="/pages/CreateAccPage.jsp"/>
+</definition>
+<definition name="settingStep1" extends="simpleBaseLayout">
+	<put-attribute name="title" value="Setting Step 1"/>
+	<put-attribute name="body" value="/pages/SettingStep1.jsp"/>
+</definition>
+</tiles-definitions>

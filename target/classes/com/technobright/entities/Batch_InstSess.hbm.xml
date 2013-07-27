@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 5, 2013 1:40:36 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.Batch_InstSess" table="BATCH_INSTSESS">
+        <id name="pk" type="long">
+            <column name="PK" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="batchInfo" class="com.technobright.entities.BatchInfo" fetch="join">
+            <column name="BATCHINFO" />
+        </many-to-one>
+        <many-to-one name="instSess" class="com.technobright.entities.InstSessionInfo" fetch="join">
+            <column name="INSTSESS" />
+        </many-to-one>
+        <property name="isHistory" type="boolean">
+            <column name="ISHISTORY" />
+        </property>
+    </class>
+</hibernate-mapping>

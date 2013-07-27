@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 30, 2012 5:28:54 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.UserPreference" table="USERPREFERENCE">
+        <id name="usrPrefId" type="int">
+            <column name="USRPREFID" />
+            <generator class="increment" />
+        </id>
+        <property name="userPreferenceName" type="java.lang.String">
+            <column name="USERPREFERENCENAME" />
+        </property>
+        <property name="usrPrefGroup" type="java.lang.String">
+            <column name="USRPREFGROUP" />
+        </property>
+        <property name="actionName" type="java.lang.String">
+            <column name="ACTIONNAME" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        <property name="type" type="java.lang.String">
+            <column name="TYPE" />
+        </property>
+    </class>
+</hibernate-mapping>

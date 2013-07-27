@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 18, 2013 3:25:06 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.fee.Installments" table="INSTALLMENTS">
+        <id name="installmentId" type="long">
+            <column name="INSTALLMENTID" />
+            <generator class="increment" />
+        </id>
+        <property name="amnt" type="double">
+            <column name="AMNT" />
+        </property>
+        <property name="startDate" type="java.util.Date">
+            <column name="STARTDATE" />
+        </property>
+        <property name="dueDate" type="java.util.Date">
+            <column name="DUEDATE" />
+        </property>
+        <property name="isHistory" type="boolean">
+            <column name="ISHISTORY" />
+        </property>
+        <property name="installmentGroupId" type="long">
+            <column name="INSTALLMENTGROUPID" />
+        </property>
+        <many-to-one name="courseInfo" class="com.technobright.entities.CourseInfo" fetch="join">
+            <column name="COURSEINFO" />
+        </many-to-one>
+        <many-to-one name="feeType" class="com.technobright.entities.fee.FeeType" fetch="join">
+            <column name="FEETYPE" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

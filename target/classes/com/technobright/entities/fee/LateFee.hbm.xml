@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 25, 2013 8:03:46 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.fee.LateFee" table="LATEFEE">
+        <id name="lateFeeId" type="long">
+            <column name="LATEFEEID" />
+            <generator class="increment" />
+        </id>
+        <property name="amnt" type="double">
+            <column name="AMNT" />
+        </property>
+        <property name="appliedAfter" type="int">
+            <column name="APPLIEDAFTER" />
+        </property>
+        <property name="isAppliedAfterMonth" type="boolean">
+            <column name="ISAPPLIEDAFTERMONTH" />
+        </property>
+        <property name="increaseAmnt" type="float" access="field">
+            <column name="INCREASEAMNT" />
+        </property>
+        <property name="increaseAfter" type="int">
+            <column name="INCREASEAFTER" />
+        </property>
+        <property name="isIncreaseMonth" type="boolean" access="field">
+            <column name="ISINCREASEMONTH" />
+        </property>
+        <many-to-one name="feeType" class="com.technobright.entities.fee.FeeType" fetch="join">
+            <column name="FEETYPE" />
+        </many-to-one>
+        <many-to-one name="courseInfo" class="com.technobright.entities.CourseInfo" fetch="join">
+            <column name="COURSEINFO" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 30, 2012 5:28:54 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.UserRole" table="USERROLE">
+        <id name="usrRoleId" type="int">
+            <column name="USRROLEID" />
+            <generator class="increment" />
+        </id>
+        <property name="roleName" type="java.lang.String">
+            <column name="ROLENAME" />
+        </property>
+        <property name="roleDescription" type="java.lang.String">
+            <column name="ROLEDESCRIPTION" />
+        </property>
+         <property name="homePage" type="java.lang.String">
+            <column name="HOMEPAGE" />
+        </property>
+        <bag name="pagesList" inverse="false" table="USRROLE_PAGE" lazy="false">
+            <key>
+                <column name="USRROLEID" />
+            </key>
+            <many-to-many class="com.technobright.entities.Page" />
+        </bag>
+        <bag name="userPreferenceList" inverse="false" table="USRROLE_USRPREF" lazy="false">
+            <key>
+                <column name="USRROLEID" />
+            </key>
+            <many-to-many class="com.technobright.entities.UserPreference" />
+        </bag>
+        <bag name="usrInfoList" inverse="true" table="USERINFO" lazy="false">
+            <key>
+                <column name="USRROLEID" />
+            </key>
+            <one-to-many class="com.technobright.entities.UserInfo" />
+        </bag>
+    </class>
+</hibernate-mapping>

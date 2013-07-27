@@ -1,0 +1,9 @@
+@CHARSET "ISO-8859-1";
+.scrollableWhiteBackground {
+	clear: both;
+	top:15px;
+	height:700px;
+	border: 1px solid #963;
+	overflow: auto;
+	background-color: #F0F8FF;
+}

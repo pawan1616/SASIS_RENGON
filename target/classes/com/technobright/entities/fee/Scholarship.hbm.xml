@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 26, 2013 6:05:16 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.fee.Scholarship" table="SCHOLARSHIP">
+        <id name="scholarshipId" type="long">
+            <column name="SCHOLARSHIPID" />
+            <generator class="increment" />
+        </id>
+        <property name="amnt" type="double">
+            <column name="AMNT" />
+        </property>
+        <property name="isDivide" type="boolean">
+            <column name="ISDIVIDE" />
+        </property>
+        <many-to-one name="courseInfo" class="com.technobright.entities.CourseInfo" fetch="join">
+            <column name="COURSEINFO" />
+        </many-to-one>
+        <many-to-one name="instSession" class="com.technobright.entities.InstSessionInfo" fetch="join">
+            <column name="INSTSESSION" />
+        </many-to-one>
+        <many-to-one name="batchInfo" class="com.technobright.entities.BatchInfo" fetch="join">
+            <column name="BATCHINFO" />
+        </many-to-one>
+        <many-to-one name="stdInfo" class="com.technobright.entities.StudentInfo" fetch="join">
+            <column name="STDINFO" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

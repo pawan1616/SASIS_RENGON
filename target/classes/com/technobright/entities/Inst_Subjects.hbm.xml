@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 13, 2012 4:29:55 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.Inst_Subjects" table="INST_SUBJECTS" >
+     <id name="pkId" type="int">
+            <column name="PKID" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="instAdmin" class="com.technobright.entities.InstAdmin" insert="true" update="true" lazy="false">
+            <column name="INSTADMINID" />
+        </many-to-one>
+        <many-to-one name="subInfo" class="com.technobright.entities.SubjectInfo" insert="true" update="true" lazy="false">
+            <column name="SUBID" />
+        </many-to-one>
+        <property name="isActive" type="boolean" access="field">
+            <column name="ISACTIVE" />
+        </property>
+    </class>
+</hibernate-mapping>
+

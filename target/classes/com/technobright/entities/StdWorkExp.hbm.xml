@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 1, 2013 7:52:05 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.StdWorkExp" table="WORKEXP">
+        <id name="workExpId" type="int">
+            <column name="WORKEXPID" />
+            <generator class="increment" />
+        </id>
+        <property name="isCurrentOrg" type="boolean">
+            <column name="ISCURRENTORG" />
+        </property>
+        <property name="orgName" type="java.lang.String">
+            <column name="ORGNAME" />
+        </property>
+        <property name="orgAddress" type="java.lang.String">
+            <column name="ORGADDRESS" />
+        </property>
+        <property name="designation" type="java.lang.String">
+            <column name="DESIGNATION" />
+        </property>
+        <property name="rolesNResponsibility" type="java.lang.String">
+            <column name="ROLESNRESPONSIBILITY" />
+        </property>
+        <property name="projects" type="java.lang.String">
+            <column name="PROJECTS" />
+        </property>
+        <property name="startDate" type="java.util.Date">
+            <column name="STARTDATE" />
+        </property>
+        <property name="EndDate" type="java.util.Date">
+            <column name="ENDDATE" />
+        </property>
+        <many-to-one name="stdInfo" class="com.technobright.entities.StudentInfo" insert="true" update="true" lazy="false">
+            <column name="STDINFO" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

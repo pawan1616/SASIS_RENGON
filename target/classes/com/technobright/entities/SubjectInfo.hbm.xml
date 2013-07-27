@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 20, 2012 12:16:33 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.technobright.entities.SubjectInfo" table="SUBJECTINFO">
+    <cache usage="transactional"/>
+        <id name="subjectId" type="long">
+            <column name="SUBJECTID" />
+            <generator class="increment" />
+        </id>
+        <property name="subName" type="java.lang.String">
+            <column name="SUBNAME" />
+        </property>
+        <property name="subType" type="java.lang.String">
+            <column name="SUBTYPE" />
+        </property>
+        <!-- <many-to-one name="instAdmin" class="com.technobright.entities.InstAdmin" fetch="select" cascade="none" lazy="false">
+            <column name="ADMINID" />
+        </many-to-one> -->
+        <!-- <bag name="examInfoList" inverse="true" table="EXAMINFO" lazy="false">
+            <key>
+                <column name="SUBJECTID" />
+            </key>
+            <one-to-many class="com.technobright.entities.ExamInfo"/>
+        </bag> -->
+    </class>
+</hibernate-mapping>
