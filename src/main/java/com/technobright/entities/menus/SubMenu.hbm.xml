@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.technobright.entities.menus.SubMenu" table="SubMenu">
+		<id name="subMenuId" type="int" column = "subMenuId">
+			<generator class="increment">
+		</id>
+		<property name="name" type="java.lang.String">
+            <column name="name" />
+        </property>
+        <many-to-one name="mainMenu"  class="com.technobright.entities.menus.MainMenu" column="menu_id" not-null="true"/>
+	</class> 
+
+</hibernate-mapping>

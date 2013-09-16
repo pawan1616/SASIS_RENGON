@@ -5,7 +5,7 @@
 <script type="text/javascript" src="js/scriptFee.js"></script>
 </head>
 <ul id="tabs">
-		      <li><a id="" href="nav2Subjects.action" name="#tab1">Subjects</a></li>
+		      <li><a id="" href="nav2Subjects.action" name="#tab1">Pay Fee</a></li>
 		      <li><a id="current" href="fee/nav2FeeSetting.action" name="#tab2">Fee Setting</a></li> 
 	  		</ul>
 		<div class="divider"></div>
