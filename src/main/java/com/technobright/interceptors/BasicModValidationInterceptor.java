@@ -2,11 +2,8 @@ package com.technobright.interceptors;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.struts2.interceptor.ServletRequestAware;
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
@@ -43,7 +40,7 @@ public class BasicModValidationInterceptor implements Interceptor, ServletReques
 		boolean doInvoke=true;
 		Object obj=action.getAction();
 		if(action.getProxy().getActionName().equals("instCreation")){
-			doInvoke=validateInstCreation((InstCreation)obj);			
+			doInvoke = validateInstCreation((InstCreation)obj);			
 		}else if(action.getProxy().getActionName().equals("subjectAction")){
 			doInvoke=validateSubjectCreation((SubjectAction)obj);
 		}else

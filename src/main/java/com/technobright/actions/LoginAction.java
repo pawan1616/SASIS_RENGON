@@ -14,6 +14,7 @@ import com.technobright.entities.ErrorMsgTransporter;
 import com.technobright.entities.UserInfo;
 import com.technobright.entities.UserPreference;
 
+
 public class LoginAction extends ActionSupport implements ServletRequestAware{
 	private HttpServletRequest request;
 	private String usrName;

@@ -1,19 +1,19 @@
 package com.technobright.entities.menus;
 
 import java.io.Serializable;
+import java.util.Set;
 
 public class SubMenu implements Serializable {
 
 	private int subMenuId;
 	private String name;
-	private MainMenu mainMenu;
+	private Set<Content> contentMenu;
 	
-	
-	public MainMenu getMainMenu() {
-		return mainMenu;
+	public Set<Content> getContentMenu() {
+		return contentMenu;
 	}
-	public void setMainMenu(MainMenu mainMenu) {
-		this.mainMenu = mainMenu;
+	public void setContentMenu(Set<Content> contentMenu) {
+		this.contentMenu = contentMenu;
 	}
 	public String getName() {
 		return name;

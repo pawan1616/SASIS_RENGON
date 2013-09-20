@@ -10,7 +10,7 @@
             <column name="name" />
         </property>
         <set name = "subMenu" table="SubMenu" cascade="all">
-            <key column="menu_id"/>
+            <key column="subMenuId"/>
             <one-to-many class="com.technobright.entities.menus.SubMenu"/>
         </set>
 	</class>

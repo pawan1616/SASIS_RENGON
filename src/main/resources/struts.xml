@@ -46,7 +46,7 @@
 			<result name="success">CreateAccPage.jsp</result>
 			<result name="input">/CreateAccPage.jsp</result>
 		</action>
-		<action name="instCreation" class="instCreate">
+		<action name="instCreation" class="com.technobright.actions.InstCreation">
 			<interceptor-ref name="defaultStack"/>
 			<interceptor-ref name="basicValidateInterceptor"/>
 			<result name="success" type="redirect">nav2template</result>
@@ -56,7 +56,7 @@
 				<param name="excludeNullProperties">true</param>
 			</result>
 		</action>
-		<action name="courseCreateAction" class="courseCreateAction">
+		<action name="courseCreateAction" class="com.technobright.actions.CourseCreateAction">
 			<result name="success">pages/CourseInfoPage.jsp</result>
 			<result name="input">pages/CourseInfoPage.jsp</result>
 			<result name="error">pages/CourseInfoPage.jsp</result>

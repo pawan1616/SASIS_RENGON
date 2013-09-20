@@ -10,7 +10,10 @@
 		<property name="name" type="java.lang.String">
             <column name="name" />
         </property>
-        <many-to-one name="mainMenu"  class="com.technobright.entities.menus.MainMenu" column="menu_id" not-null="true"/>
-	</class> 
+        
+        <set name = "contentMenu" table="Content" cascade="all">
+            <key column="ContentId"/>
+            <one-to-many class="com.technobright.entities.menus.Content"/>
+       </set>	</class> 
 
 </hibernate-mapping>

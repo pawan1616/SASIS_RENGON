@@ -51,7 +51,7 @@
 		scope="prototype">
 	</bean>
 	<bean id="createAccAction" class="com.technobright.actions.CreateAccountAction"	scope="session">
-		<property name="dao" ref="daoDerbyImpl" />
+		<property name="dao" ref="" />
 	</bean>
 
 	
