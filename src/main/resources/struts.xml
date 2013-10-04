@@ -5,8 +5,9 @@
 <struts>
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 	<constant name="struts.devMode" value="false" />
-	
-	<package name="default1" extends="json-default" namespace="/">
+  	<constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+<!--	<constant name="struts.objectFactory.spring.autoWire" value="auto"/> -->
+	<package name="default1" extends="json-default" namespace="/"> 
 	<!-- Interceptor Settings -->
 		<interceptors>
 	        <interceptor name="logintest" class="com.technobright.interceptors.AuthenticaitonInterceptor"/>
@@ -46,7 +47,7 @@
 			<result name="success">CreateAccPage.jsp</result>
 			<result name="input">/CreateAccPage.jsp</result>
 		</action>
-		<action name="instCreation" class="com.technobright.actions.InstCreation">
+		<action name="instCreation" class="instCreate">
 			<interceptor-ref name="defaultStack"/>
 			<interceptor-ref name="basicValidateInterceptor"/>
 			<result name="success" type="redirect">nav2template</result>
@@ -56,7 +57,7 @@
 				<param name="excludeNullProperties">true</param>
 			</result>
 		</action>
-		<action name="courseCreateAction" class="com.technobright.actions.CourseCreateAction">
+		<action name="courseCreateAction" class="courseCreateAction">
 			<result name="success">pages/CourseInfoPage.jsp</result>
 			<result name="input">pages/CourseInfoPage.jsp</result>
 			<result name="error">pages/CourseInfoPage.jsp</result>

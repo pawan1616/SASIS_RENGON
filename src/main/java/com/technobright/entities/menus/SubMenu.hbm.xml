@@ -5,7 +5,7 @@
 <hibernate-mapping>
 	<class name="com.technobright.entities.menus.SubMenu" table="SubMenu">
 		<id name="subMenuId" type="int" column = "subMenuId">
-			<generator class="increment">
+			<generator class="increment"/>
 		</id>
 		<property name="name" type="java.lang.String">
             <column name="name" />
